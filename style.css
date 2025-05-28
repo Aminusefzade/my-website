@@ -1,0 +1,253 @@
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-image: url("https://cdn.imgurl.ir/uploads/b52973_background.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.envelope {
+    width: 700px;
+    height: 500px;
+    position: relative;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.front, .back {
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    width: 60%;
+    height: 50%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.front {
+    background-image: url("https://cdn.imgurl.ir/uploads/p35280_front.png");
+    background-size: cover;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+    z-index: 2;
+}
+
+.back {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.back1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://cdn.imgurl.ir/uploads/s68663_back.png");
+    background-size: cover;
+    backface-visibility: hidden;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.flap {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    bottom: 20%;
+    background-image: url("https://cdn.imgurl.ir/uploads/g435130_flap.png");
+    background-size: 100% 100%;
+    transform-origin: top center;
+    transform: rotateX(0deg);
+    z-index: 3;
+    transition: transform 0.5s ease-in-out;
+}
+
+.bb {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    bottom: 60%;
+    background-image: url("https://cdn.imgurl.ir/uploads/k70940_flapback.png");
+    background-size: 100% 100%;
+    transform-origin: bottom left;
+    transform: rotateX(-90deg);
+    opacity: 0;
+    z-index: 4;
+    transition: 
+        transform 0.5s ease-in-out,
+        opacity 0.1s ease-in-out 0.15s;
+}
+
+.bbb {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: 245px;
+    background-image: url("https://cdn.imgurl.ir/uploads/h559804_envelopinside.png");
+    background-size: 100% 100%;
+    z-index: 0;
+}
+
+.bbbb {
+    position: absolute;
+    bottom: 8%;
+    left: 41%;
+    width: 70px;
+    height: 70px;
+    background-image: url("https://cdn.imgurl.ir/uploads/h842208_stamp.png");
+    background-size: 100% 100%;
+    z-index: 5;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.bbbb:hover {
+    transform: scale(1.1);
+}
+
+.ax {
+    position: absolute;
+    width: 200px;
+    height: 350px;
+    left: 27%;
+    bottom: 7%;
+    background-color: #f0f0f0;
+    transform: rotate(90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.ax video{
+    width: 100%;
+    height: 100%;
+}
+.flap.open ~ .ax {
+    opacity: 1;
+}
+
+.ax.active {
+    transform: rotate(0deg) scale(2);
+    left: 45%;
+    top: 50%;
+    margin-left: -75px;
+    margin-top: -150px;
+    z-index: 999;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    background-color: #fff;
+    padding: 20px;
+    pointer-events: auto;
+}
+
+.flap.open {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.bb.open {
+    transform: rotateX(0deg);
+    opacity: 1;
+    z-index: 1;
+}
+
+.envelope.flipped .front {
+    transform: rotateY(180deg);
+}
+
+.envelope.flipped .back {
+    transform: rotateY(360deg);
+}
+
+#flip-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#flip-btn:hover {
+    background-color: #45a049;
+}
+
+.bbbb.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+    display: none;
+}
+@media only screen and (max-width: 450px) {
+    body{
+        overflow: hidden;
+    }
+    .envelope{
+        width:450px ;
+        height: 400px;
+    }
+    .front, .back {
+    left: 100px;
+    top: 150px;
+    }
+    .flap {
+    position: absolute;
+    height: 160px;
+    }
+    .bb {
+    height: 250px;
+    bottom: 57%;
+    }
+    .bbb {
+    height: 197px;
+    }
+
+    .bbbb {
+    position: absolute;
+    bottom: 7%;
+    left: 40%;
+    width: 50px;
+    height: 50px;
+    }
+    .ax {
+    width: 140px;
+    height: 180px;
+    left: 26%;
+    }
+    .ax.active {
+    transform: rotate(0deg);
+    width: 360px;
+    height: 720px;
+    left: 0;
+    top: -200px;
+    }
+}
